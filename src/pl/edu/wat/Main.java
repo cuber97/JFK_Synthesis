@@ -29,7 +29,6 @@ public class Main {
 			.filter(m -> m.getNameAsString().equalsIgnoreCase("FOR"))
 			.forEach(Main::replaceSnippetFORWithForStmt);
 
-        //new Rewriter().visit(cu, null);
         cu.getClassByName("Class").get().setName("ClassAltered");
 
         try(FileWriter output = new FileWriter(new File(alteredFileName), false)) {
@@ -68,7 +67,6 @@ public class Main {
                 s = s.replaceAll(", *<", ", less");
                 s = s.replaceAll(", *\\+", ", increment");
                 s = s.replaceAll(", *\\-", ", decrement");
-                //System.out.println(s);
                 list.add(s);
             }
 
@@ -95,10 +93,6 @@ public class Main {
         assignExpr.setOperator(AssignExpr.Operator.ASSIGN);
         assignExpr.setTarget(declarationExpr);
         assignExpr.setValue(nameExpr);
-
-
-        childList.forEach(m -> System.out.println(m));
-        
 
         NodeList<Expression> initExpressionsList = new NodeList<>();
         initExpressionsList.add(assignExpr);
@@ -149,13 +143,11 @@ public class Main {
         forStatement.setUpdate(updateExpressionsList);
         forStatement.setBody(new BlockStmt());
 
-        System.out.println(forStatement);
-
         return forStatement;
     }
 
     private static void replaceSnippetFORWithForStmt(MethodCallExpr method) {
-        ForStmt block = getForStmt(method);
-        method.getParentNode().get().replace(block);
+        ForStmt forStmt = getForStmt(method);
+        method.getParentNode().get().replace(forStmt);
     }
 }
