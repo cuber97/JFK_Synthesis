@@ -9,7 +9,7 @@ public final class ClassAltered {
     }
 
     private static void method1() {
-        for (int i = 30; i > 15; i--) {
+        for (int j = 4; j > 15; j++) {
         }
     }
 

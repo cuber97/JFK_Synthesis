@@ -8,7 +8,7 @@ public final class Class {
     }
 
     private static void method1() {
-        FOR(i, 30, 15, >, -);
+        FOR(j, 4, 15, >, +);
     }
 
     private static void method2(int n) {
